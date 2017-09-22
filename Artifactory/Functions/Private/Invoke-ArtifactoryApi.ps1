@@ -1,5 +1,5 @@
 ﻿#requires -Version 4
-#requires -Modules Helper
+#requires -Modules Helpers
 
 function Invoke-ArtifactoryApi {
     [CmdletBinding()]
