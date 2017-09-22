@@ -1,3 +1,7 @@
+# 0.1.7
+
+- Fixed dependency on WebRequest
+
 # 0.1.5
 
 - Fixed dependency on Helpers
