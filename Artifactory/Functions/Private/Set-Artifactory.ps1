@@ -27,7 +27,7 @@
     }
 
     process {
-        if ($Force -or $PSCmdlet.ShouldProcess("ShouldProcess?")) {
+        if ($Force -or $PSCmdlet.ShouldProcess("Set new credentials for server '$Server' and user '$User'?")) {
             $script:ArtifactoryServer = $Server
             $script:ArtifactoryUser   = $User
             $script:ArtifactoryToken  = $Token
