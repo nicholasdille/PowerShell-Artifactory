@@ -30,7 +30,7 @@ function Remove-Artifact {
         if ($PSCmdlet.ParameterSetName -ieq 'Pipeline') {
             foreach ($subitem in $Item) {
                 try {
-                    if ($Force -or $PSCmdlet.ShouldProcess("ShouldProcess?")) {
+                    if ($Force -or $PSCmdlet.ShouldProcess("Remove artifact '/$Path/$subitem'?")) {
                         Invoke-ArtifactoryApi -Path "/$Path/$subitem" -Method Delete | Out-Null
                     }
 
