@@ -1,3 +1,8 @@
+# 0.1.14
+
+- Updated build tools
+- Improved quality by using script analyzer
+
 # 0.1.7
 
 - Fixed dependency on WebRequest
