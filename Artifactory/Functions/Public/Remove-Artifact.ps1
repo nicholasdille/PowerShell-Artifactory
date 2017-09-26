@@ -1,5 +1,5 @@
 function Remove-Artifact {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact='High')]
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -16,12 +16,23 @@ function Remove-Artifact {
         [switch]
         $Interactive
     )
+    
+    begin {
+        if (-not $PSBoundParameters.ContainsKey('Confirm')) {
+            $ConfirmPreference = $PSCmdlet.SessionState.PSVariable.GetValue('ConfirmPreference')
+        }
+        if (-not $PSBoundParameters.ContainsKey('WhatIf')) {
+            $WhatIfPreference = $PSCmdlet.SessionState.PSVariable.GetValue('WhatIfPreference')
+        }
+    }
 
     process {
         if ($PSCmdlet.ParameterSetName -ieq 'Pipeline') {
             foreach ($subitem in $Item) {
                 try {
-                    Invoke-ArtifactoryApi -Path "/$Path/$subitem" -Method Delete | Out-Null
+                    if ($Force -or $PSCmdlet.ShouldProcess("ShouldProcess?")) {
+                        Invoke-ArtifactoryApi -Path "/$Path/$subitem" -Method Delete | Out-Null
+                    }
 
                 } catch [System.Net.WebException] {
                     $response = $_.Exception.Response

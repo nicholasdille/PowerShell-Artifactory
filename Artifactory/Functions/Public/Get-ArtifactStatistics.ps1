@@ -1,4 +1,9 @@
 function Get-ArtifactStatistics {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        "PSUseSingularNouns", 
+        "", 
+        Justification = "That's how it is called"
+    )]
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]

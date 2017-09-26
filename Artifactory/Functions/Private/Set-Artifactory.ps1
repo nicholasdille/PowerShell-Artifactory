@@ -1,5 +1,5 @@
 ﻿function Set-Artifactory {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Low')]
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -16,8 +16,21 @@
         [string]
         $Token
     )
+    
+    begin {
+        if (-not $PSBoundParameters.ContainsKey('Confirm')) {
+            $ConfirmPreference = $PSCmdlet.SessionState.PSVariable.GetValue('ConfirmPreference')
+        }
+        if (-not $PSBoundParameters.ContainsKey('WhatIf')) {
+            $WhatIfPreference = $PSCmdlet.SessionState.PSVariable.GetValue('WhatIfPreference')
+        }
+    }
 
-    $script:ArtifactoryServer = $Server
-    $script:ArtifactoryUser   = $User
-    $script:ArtifactoryToken  = $Token
+    process {
+        if ($Force -or $PSCmdlet.ShouldProcess("ShouldProcess?")) {
+            $script:ArtifactoryServer = $Server
+            $script:ArtifactoryUser   = $User
+            $script:ArtifactoryToken  = $Token
+        }
+    }
 }
