@@ -1,5 +1,9 @@
 # Release Notes
 
+## 0.1.14.17
+
+- Added required modules to manifest
+
 ## 0.1.14.16
 
 - Switched to four part version numbers

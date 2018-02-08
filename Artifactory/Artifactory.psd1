@@ -7,7 +7,12 @@
     Copyright = '(c) 2017 Nicholas Dille. All rights reserved.'
      Description = 'Cmdlets for JFrog Artifactory'
     # PowerShellVersion = ''
-    # RequiredModules = @()
+    RequiredModules = @(
+        @{
+            ModuleName = 'WebRequest'
+            RequiredVersion = '0.2.0.26'
+        }
+    )
     FunctionsToExport = @(
         'Set-Artifactory'
         'Find-Artifact'
