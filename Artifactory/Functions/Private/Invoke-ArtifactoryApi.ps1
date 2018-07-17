@@ -27,14 +27,14 @@ function Invoke-ArtifactoryApi {
 
     if ($Headers.ContainsKey('Accept')) {
         $Headers.Accept = $Accept
-    
+
     } else {
         $Headers.Add('Accept', $Accept)
     }
 
     $Artifactory = Get-Artifactory
 
-    $AuthString = ConvertTo-Base64 -Data "$($Artifactory.User):$($Artifactory.Token)" -Encoding ASCII
+    $AuthString = Get-BasicAuthentication -User $Artifactory.User -Token $Artifactory.Token
     $IwrParams = @{
         Uri     = "$($Artifactory.Server)$Path"
         Method  = 'Get'
